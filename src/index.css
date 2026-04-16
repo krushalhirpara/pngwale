@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Outfit', sans-serif;
+}
+
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Typography improvements for static pages */
+h1 {
+  @apply font-black tracking-tight;
+}
+
+h2 {
+  @apply font-bold tracking-tight;
+}
+
+h3 {
+  @apply font-semibold tracking-tight;
+}
+
+p {
+  @apply leading-relaxed;
+}
+
+.prose {
+  @apply max-w-none;
+}
+
+.prose h2 {
+  @apply mb-4 mt-8 text-xl font-bold text-slate-900 dark:text-slate-100;
+}
+
+.prose h3 {
+  @apply mb-3 mt-6 text-lg font-semibold text-slate-800 dark:text-slate-200;
+}
+
+.prose p {
+  @apply mb-4 text-slate-700 dark:text-slate-300;
+}
+
+.prose strong {
+  @apply font-semibold text-slate-900 dark:text-slate-100;
+}
+
+.hero-gradient-rise {
+  background-image:
+    radial-gradient(circle at 18% 24%, rgba(84, 136, 255, 0.85) 0%, rgba(84, 136, 255, 0) 38%),
+    radial-gradient(circle at 82% 24%, rgba(84, 136, 255, 0.85) 0%, rgba(84, 136, 255, 0) 38%),
+    radial-gradient(circle at 50% 92%, rgba(255, 43, 156, 0.92) 0%, rgba(255, 43, 156, 0) 52%),
+    radial-gradient(circle at 50% 112%, rgba(255, 121, 63, 0.88) 0%, rgba(255, 121, 63, 0) 38%),
+    linear-gradient(180deg, #0b1320 0%, #151826 48%, #1f315b 100%);
+  transform: translateY(100%);
+  opacity: 0;
+  animation: heroGradientRise 1.2s cubic-bezier(0.2, 0.65, 0.15, 1) forwards;
+}
+
+.hero-dark-vignette {
+  background:
+    radial-gradient(ellipse at 50% -20%, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.1) 52%, rgba(0, 0, 0, 0.02) 70%),
+    linear-gradient(90deg, rgba(12, 18, 30, 0.3) 0%, rgba(12, 18, 30, 0.65) 50%, rgba(12, 18, 30, 0.3) 100%);
+}
+
+@keyframes heroGradientRise {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
