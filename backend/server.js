@@ -10,6 +10,11 @@ console.log("🚀 DEPLOY STARTED");
 
 const app = express();
 
+app.get('/', (req, res) => {
+  console.log("ROOT HIT");
+  res.send("🚀 ROOT WORKING");
+});
+
 // ================= LOGGING =================
 app.use((req, res, next) => {
   const logMsg = `[${new Date().toISOString()}] ${req.method} ${req.url}\n`;
