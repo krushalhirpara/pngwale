@@ -12,7 +12,7 @@ const app = express();
 
 app.get('/', (req, res) => {
   console.log("ROOT HIT");
-  res.send("🚀 ROOT WORKING");
+  res.send("🚀 ROOT WORKING V2");
 });
 
 // ================= LOGGING =================
