@@ -33,6 +33,10 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 // ================= ROUTES =================
+app.use('/api', (req, res, next) => {
+  console.log("🔥 API HIT");
+  next();
+});
 app.use('/api', require('./routes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
