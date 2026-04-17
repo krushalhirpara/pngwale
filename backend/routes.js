@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+router.get('/', (req, res) => {
+  res.json({ message: "API is working 🚀" });
+});
 const jwt = require('jsonwebtoken');
 const cloudinary = require('./config/cloudinary');
 const Image = require('./models/Image');
@@ -185,7 +188,7 @@ router.get('/image/:itemId', async (req, res) => {
   try {
     const { itemId } = req.params;
     let image;
-    
+
     // Check if itemId is a valid MongoDB ObjectId
     if (itemId.match(/^[0-9a-fA-F]{24}$/)) {
       image = await Image.findById(itemId).populate('category');
@@ -198,9 +201,9 @@ router.get('/image/:itemId', async (req, res) => {
     }
 
     // Get related images (same category)
-    const related = await Image.find({ 
-      category: image.category?._id, 
-      _id: { $ne: image._id } 
+    const related = await Image.find({
+      category: image.category?._id,
+      _id: { $ne: image._id }
     }).limit(8);
 
     res.json({
