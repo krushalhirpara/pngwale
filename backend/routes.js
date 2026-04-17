@@ -9,6 +9,7 @@ const Image = require('./models/Image');
 const Category = require('./models/Category');
 const auth = require('./middleware/auth');
 const multer = require('multer');
+console.log("HELLO TEST FINAL");
 
 // ================= CONFIG =================
 const ADMIN_EMAIL = 'admin@gmail.com';
