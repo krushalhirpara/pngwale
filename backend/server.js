@@ -35,6 +35,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', require('./routes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
+app.get('/', (req, res) => {
+  res.send("Server is working ✅");
+});
+
 // MongoDB connect
 const PORT = process.env.PORT; // ✅ IMPORTANT
 const MONGO_URI = process.env.MONGO_URI;
