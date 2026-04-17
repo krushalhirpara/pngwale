@@ -3,6 +3,7 @@ require('dotenv').config({ path: './.env' });
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 console.log("🚀 DEPLOY STARTED");
 
@@ -16,15 +17,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ROOT ROUTE (TEST)
-app.get('/', (req, res) => {
-  console.log("ROOT HIT");
-  res.send("🚀 ROOT WORKING FINAL");
-});
-
-// API ROUTES
+// API ROUTES (pehla aa aavse)
 app.use('/api', require('./routes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
+
+// ✅ FRONTEND SERVE (IMPORTANT)
+app.use(express.static(path.join(__dirname, '../dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
+});
 
 // MongoDB
 mongoose.connect(process.env.MONGO_URI)
