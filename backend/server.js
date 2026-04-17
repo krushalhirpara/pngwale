@@ -21,11 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', require('./routes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
 
-// ✅ FRONTEND SERVE (IMPORTANT)
-app.use(express.static(path.join(__dirname, '../dist')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'));
+// ROOT ROUTE
+app.get('/', (req, res) => {
+  res.send("🚀 API WORKING");
 });
 
 // MongoDB
