@@ -169,7 +169,10 @@ router.get('/images', async (req, res) => {
 
     res.json({
       success: true,
-      data: images,
+      data: images.map(img => ({
+        ...img._doc,
+        imageUrl: `${process.env.BASE_URL}${img.imageUrl}`
+      })),
       pagination: {
         total,
         page,
