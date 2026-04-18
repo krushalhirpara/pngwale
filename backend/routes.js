@@ -156,12 +156,16 @@ router.get('/images', async (req, res) => {
       }
     }
 
-    const images = await Image.find(query)
+    let images = await Image.find(query)
       .populate('category')
       .skip(skip)
       .limit(limit);
 
-    const total = await Image.countDocuments(query);
+    images = images.filter(img =>
+      img.imageUrl && img.imageUrl.startsWith('http')
+    );
+
+    const total = images.length;
 
     res.json({
       success: true,
