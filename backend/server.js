@@ -9,7 +9,7 @@ console.log("🚀 DEPLOY STARTED");
 
 const app = express();
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // IMPORTANT: Railway compatibility
 const PORT = process.env.PORT || 8080;
