@@ -134,25 +134,22 @@ router.get('/categories', async (req, res) => {
   }
 });
 
-// ================= GET IMAGES =================
 router.get('/images', async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 20;
     const skip = (page - 1) * limit;
+
     const search = req.query.search || '';
     const categorySlug = req.query.category;
 
     const query = {};
 
     if (search) {
-      query.$or = [
-        { title: { $regex: search, $options: 'i' } },
-        { tags: { $in: [new RegExp(search, 'i')] } }
-      ];
+      query.title = { $regex: search, $options: 'i' };
     }
 
-    if (categorySlug && categorySlug !== 'all') {
+    if (categorySlug) {
       const category = await Category.findOne({ slug: categorySlug });
       if (category) {
         query.category = category._id;
@@ -161,7 +158,6 @@ router.get('/images', async (req, res) => {
 
     const images = await Image.find(query)
       .populate('category')
-      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
 
@@ -169,16 +165,13 @@ router.get('/images', async (req, res) => {
 
     res.json({
       success: true,
-      data: images.map(img => ({
-        ...img._doc,
-        imageUrl: `/uploads/${file.filename}`
-      })),
+      data: images,
       pagination: {
         total,
         page,
         limit,
-        pages: Math.ceil(total / limit)
-      }
+        pages: Math.ceil(total / limit),
+      },
     });
 
   } catch (err) {
