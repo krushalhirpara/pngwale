@@ -134,9 +134,12 @@ function HomePage() {
               item={{
                 id: item._id,
                 title: item.title,
-                src: item.imageUrl.startsWith('http')
+
+                // ✅ FIXED IMAGE LOGIC
+                src: item.imageUrl && item.imageUrl.startsWith('http')
                   ? item.imageUrl
-                  : `${import.meta.env.VITE_API_URL}${item.imageUrl}`,
+                  : null,
+
                 category: item.category?.name || "Uncategorized",
                 description: `${item.title} transparent PNG.`,
                 keywords: item.tags || [],

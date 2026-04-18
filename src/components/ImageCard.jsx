@@ -20,7 +20,9 @@ function ImageCard({ item }) {
           style={transparentGridStyle}
         >
           <img
-            src={item.src}
+            src={item.src && item.src !== "undefined"
+              ? item.src
+              : "https://via.placeholder.com/300x300?text=No+Image"}
             alt={item.title}
             className="h-full w-full object-contain transition duration-500 ease-out group-hover:scale-110"
             loading="lazy"
