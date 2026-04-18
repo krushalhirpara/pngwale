@@ -161,9 +161,6 @@ router.get('/images', async (req, res) => {
       .skip(skip)
       .limit(limit);
 
-    images = images.filter(img =>
-      img.imageUrl && img.imageUrl.startsWith('http')
-    );
 
     const total = images.length;
 

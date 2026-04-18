@@ -136,7 +136,8 @@ function HomePage() {
                 title: item.title,
                 src: item.imageUrl.startsWith('http')
                   ? item.imageUrl
-                  : `${import.meta.env.VITE_API_URL}${item.imageUrl}`, category: item.category?.name || "Uncategorized",
+                  : `${import.meta.env.VITE_API_URL}${item.imageUrl}`,
+                category: item.category?.name || "Uncategorized",
                 description: `${item.title} transparent PNG.`,
                 keywords: item.tags || [],
               }}
